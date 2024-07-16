@@ -6,7 +6,7 @@
 *
 * Name: Huy Manh Le (Thomas Le)_ Student ID: hle37________ Date: 2024/07/16______
 *
-* Online (Heroku) Link: _________________________________________________________
+* Online (Heroku) Link: https://web700-assignment-4-hle37-f8e88693caba.herokuapp.com/
 *
 *********************************************************************************/
 
@@ -65,6 +65,61 @@ app.set("view engine", ".hbs");
 
 //////////////////////////////////////////////////
 
+var active = {
+    home: false,
+    about: false,
+    demo: false,
+    addStudent: false,
+    register: false,
+    viewData: false,
+}
+
+function setActiveMenu(tab) {
+    Object.keys(active).forEach((key) => active[key] = false)
+    active[tab] = true
+}
+
+// Get Home
+app.get("/", (req, res) => {
+    setActiveMenu("home")
+    res.render('home', {
+        active: active,
+        layout: "layout"
+    });
+});
+
+// Get About
+app.get("/about", (req, res) => {
+    setActiveMenu("about")
+    res.render('about', {
+        active: active,
+        layout: "layout",
+    });
+});
+
+// Get Demo
+app.get("/htmlDemo", (req, res) => {
+    setActiveMenu("demo")
+    res.render('htmlDemo', {
+        active: active,
+        layout: "layout"
+    });
+});
+
+// Get Add Student
+app.get("/students/add", (req, res) => {
+    setActiveMenu("addStudent")
+    res.render('addStudent', {
+        active: active,
+        layout: "layout"
+    });
+});
+
+// Post Add Student
+app.post("/students/add", (req, res) => {
+    collegeData.addStudent(req.body).then(result => res.send(result)).catch(error => res.send({ message: error }))
+});
+
 // Get Students
 app.get("/students", (req, res) => {
     course = req.query.course
@@ -75,18 +130,6 @@ app.get("/students", (req, res) => {
     } else {
         collegeData.getAllStudent().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
     }
-});
-
-// Get Add Student
-app.get("/students/add", (req, res) => {
-    res.render('addstudent', {
-        layout: "layout"
-    });
-});
-
-// Post Add Student
-app.post("/students/add", (req, res) => {
-    collegeData.addStudent(req.body).then(result => res.send(result)).catch(error => res.send({ message: error }))
 });
 
 // Get Students by Number
@@ -111,34 +154,6 @@ app.get("/courses", (req, res) => {
     collegeData.getCourses().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
 });
 
-// Get Home
-app.get("/", (req, res) => {
-    res.render('home', {
-        layout: "layout"
-    });
-});
-
-// Get About
-app.get("/about", (req, res) => {
-    res.render('about', {
-        layout: "layout"
-    });
-});
-
-// Get Demo
-app.get("/htmlDemo", (req, res) => {
-    res.render('htmlDemo', {
-        layout: "layout"
-    });
-});
-
-// Get Test
-app.get("/test", (req, res) => {
-    res.render('test', {
-        layout: "layout"
-    });
-});
-
 // Catch Error
 app.use((err, req, res, next) => {
     res.status(404).send("Page Not THERE, Are you sure of the path?");
@@ -159,7 +174,9 @@ collegeData.initialize()
 // WEEK 8 EXAMPLES: FORM
 
 app.get("/registerUser", function (req, res) {
+    setActiveMenu("registerUser")
     res.render('registerUser', {
+        active: active,
         layout: "layout"
     });
 });
@@ -178,6 +195,7 @@ app.post("/register-user", upload.single("photo"), (req, res) => {
 // WEEK 9 EXAMPLES: HANDLEBARS
 
 app.get("/viewData", function (req, res) {
+    setActiveMenu("viewData")
 
     var someData = [{
         name: "John",
@@ -196,6 +214,7 @@ app.get("/viewData", function (req, res) {
 
     res.render('viewData', {
         data: someData,
+        active: active,
         layout: "layout" // do not use the default Layout (main.hbs)
     });
 });

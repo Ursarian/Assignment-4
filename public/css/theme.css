@@ -1,36 +1,55 @@
-.navbar{
-    box-shadow: 0em 0.6em 0.6em gray;
+@import url('https://fonts.googleapis.com/css2?family=Almendra+Display&family=Almendra+SC&family=New+Rocker&family=UnifrakturCook:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Almendra+Display&family=Almendra+SC&family=New+Rocker&display=swap');
+
+.bg-light{
+    box-shadow: 0rem 0.6rem 0.6rem gray;
     padding: 0;
-    margin-bottom: 2em;
-    color: black;
+    margin-bottom: 2rem;
 }
 
-.navbar div{
-    background-color: black;
-}
-
-.navbar .navbar-brand{
-    color: rgb(255, 0, 0);
-    padding: 0;
+.navbar-light .navbar-brand{
+    background-color: antiquewhite;
+    padding: 0 1rem;
     margin: 0;
+    border-right: 0.1rem solid rgb(64, 64, 64);
+    font-family: "UnifrakturCook", cursive;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2rem;
+    text-shadow: 0.2rem 0.2rem 0.2rem gray;
+}
+
+.bg-light .navbar-collapse{
+    background-color: antiquewhite;
+    font-family: "New Rocker", systrem-ui;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+}
+
+.bg-light .navbar-collapse .nav-link{
     height: 100%;
+    padding: 1rem;
+    background-color: antiquewhite;
+    border-right: 0.1rem solid rgb(96, 96, 96);
+    border-left: 0.1rem solid rgb(96, 96, 96);
 }
 
-.nav-link{
-    border-left: 0.1em solid gray;
-    padding: 1em;
-}
-
-.navbar .navbar-nav .nav-link, .navbar .navbar-brand {
-    color: antiquewhite;
+.bg-light .navbar-nav .nav-link, .bg-light .navbar-brand {
     align-content: center;
-    position: relative;
-    background-color: black;
-    box-shadow: 0em 0.6em 0.6em gray;
-    transition: all 2s ease-in-out;
+    transition: height 0.15s ease-out, background-color 0.3s ease-out;
 }
 
-.navbar .navbar-nav .nav-link:hover, .navbar .navbar-brand:hover {
-    color: #faebd7;
-    height: 150%;
+.bg-light .navbar-nav .nav-link:hover{
+    height: 115%;
+    box-shadow: 0rem 0.6rem 0.6rem gray;
+    border-bottom: 0.15rem solid rgb(96, 96, 96);
+    background-color: rgb(250, 225, 195);
+}
+
+.bg-light .navbar-nav .active>.nav-link{
+    height: 125%;
+    box-shadow: 0rem 0.6rem 0.6rem gray;
+    border-bottom: 0.15rem solid rgb(96, 96, 96);
+    background-color: rgb(250, 215, 175);
 }
