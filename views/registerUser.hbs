@@ -1,0 +1,94 @@
+<h1>Week 8 example</h1>
+
+<p>Register a new user:</p>
+<!-- <button id="showDialog">Show Form Dialog</button>
+
+<dialog id="formDialog">
+	<form method="POST" action="/register-user" enctype="multipart/form-data">
+		<table style="border: 1px dashed #cdcdcd;padding:6px;">
+			<tbody>
+			<tr>
+				<td>
+				<label for="username">Choose a username:</label>
+				</td>
+				<td>
+				<input  style="width:100%" id="username" name="username" type="text" placeholder="A Username you'd like to use" />
+				</td>
+			</tr>
+			<tr>
+				<td><label for="email">Your Email:</label></td>
+				<td><input style="width:100%" id="email" name="email" type="text" placeholder="Email address" />
+				<tr>
+					<td><label for="name">Your Name:</label></td>
+					<td><input style="width:100%" id="name" name="name" type="text" placeholder="Your name" /></td>
+				</tr>
+				<tr>
+					<td><label for="password">Your Password:</label></td>
+					<td><input style="width:100%" id="password" name="password" type="password" /></td>
+				</tr>
+				<tr>
+					<td><label for="passwordconfirm">Confirm Password:</label></td>
+					<td><input style="width:100%" id="passwordconfirm" name="passwordconfirm" type="password" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<p><em>Would you like to subscribe to our monthly newsletter?</em><br />
+						<input id="yes" type="radio" name="newsletter" value="yes" /><label for="yes">Yes</label><br/>
+						<input id="no" type="radio" name="newsletter" value="no" /><label for="no">No</label>
+					</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="Submit" /> (using a regular input element to submit)</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Submit</button> (using a button element to submit)</td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="button" id="cancelBtn">Cancel</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+</dialog> -->
+
+<div style="text-align:right;width:400px;border:1px dashed #6495de;padding:16px;">
+<form method="POST" enctype="multipart/form-data" action="/register-user">
+	<label for="name">Name</label>
+	<input id="name" type="text" name="name"/><br />
+	<label for="username">Username</label>
+	<input id="username" type="text" name="username"/><br />
+	<label for="email">Email</label>
+	<input id="email" type="email" name="email"/><br />
+	<label for="password">Password</label>
+	<input id="password" type="password" name="password"/><br />
+	<label for="photo">Photo ID</label>
+	<input id="photo" type="file" name="photo"/><br />
+	<input type="submit" value="Submit File" />
+</form>
+</div>
+
+{{!-- <script>
+	document.addEventListener('DOMContentLoaded', (event) => {
+		const dialog = document.getElementById('formDialog');
+		const showDialogButton = document.getElementById('showDialog');
+		const cancelButton = document.getElementById('cancelBtn');
+
+		showDialogButton.addEventListener('click', () => {
+			dialog.showModal();
+		});
+
+		cancelButton.addEventListener('click', () => {
+			dialog.close();
+		});
+
+		dialog.addEventListener('close', () => {
+			if (dialog.returnValue === 'default') {
+				// This is where you can handle the form submission
+				console.log('Form submitted');
+			} else {
+				console.log('Dialog closed without submitting');
+			}
+		});
+	});
+</script> --}}

@@ -1,0 +1,36 @@
+.navbar{
+    box-shadow: 0em 0.6em 0.6em gray;
+    padding: 0;
+    margin-bottom: 2em;
+    color: black;
+}
+
+.navbar div{
+    background-color: black;
+}
+
+.navbar .navbar-brand{
+    color: rgb(255, 0, 0);
+    padding: 0;
+    margin: 0;
+    height: 100%;
+}
+
+.nav-link{
+    border-left: 0.1em solid gray;
+    padding: 1em;
+}
+
+.navbar .navbar-nav .nav-link, .navbar .navbar-brand {
+    color: antiquewhite;
+    align-content: center;
+    position: relative;
+    background-color: black;
+    box-shadow: 0em 0.6em 0.6em gray;
+    transition: all 2s ease-in-out;
+}
+
+.navbar .navbar-nav .nav-link:hover, .navbar .navbar-brand:hover {
+    color: #faebd7;
+    height: 150%;
+}

@@ -1,0 +1,31 @@
+<h1>Week 9 example</h1>
+
+<table border='1'>
+    <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Occupation</th>
+        <th>Company</th>
+    </tr>
+    {{#each data}}
+        {{#if visible}}
+            <tr>
+                <td>{{@index}}</td>
+                <td>{{name}}</td>
+                <td>{{age}}</td>
+                <td>{{occupation}}</td>
+                <td>{{company}}</td>
+            </tr>
+        {{else}}
+            <tr>
+                <td>{{@index}}</td>
+                <td colspan="4">User: '{{name}}' has hidden their information</td>
+            </tr>
+        {{/if}}
+    {{else}}
+            <tr>
+            <td colspan="4">No Data Available</td>
+        </tr>
+    {{/each}}
+</table>
