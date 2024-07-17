@@ -15,9 +15,9 @@
             <li class="nav-item {{#if active.viewData}}active{{/if}}"><a class="nav-link" href="/viewData">View Data</a></li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="/students">Students</a></li>
-            <li class="nav-item"><a class="nav-link" href="/tas">Teaching Assistants</a></li>
-            <li class="nav-item"><a class="nav-link" href="/courses">Courses</a></li>
+            <li class="nav-item {{#if active.students}}active{{/if}}"><a class="nav-link" href="/students">Students</a></li>
+            <li class="nav-item {{#if active.tas}}active{{/if}}"><a class="nav-link" href="/tas">Teaching Assistants</a></li>
+            <li class="nav-item {{#if active.courses}}active{{/if}}"><a class="nav-link" href="/courses">Courses</a></li>
         </ul>
     </div>
 </nav>

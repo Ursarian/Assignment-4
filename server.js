@@ -45,7 +45,8 @@ const upload = multer({ storage: storage });
 
 // WEEK 9: HANDLEBARS
 
-const exphbs = require("express-handlebars")
+const exphbs = require("express-handlebars");
+const { measureMemory } = require("vm");
 
 // Register handlebars as the rendering engine for views
 app.engine(".hbs", exphbs.engine(
@@ -72,6 +73,9 @@ var active = {
     addStudent: false,
     register: false,
     viewData: false,
+    students: false,
+    tas: false,
+    courses: false,
 }
 
 function setActiveMenu(tab) {
@@ -117,18 +121,19 @@ app.get("/students/add", (req, res) => {
 
 // Post Add Student
 app.post("/students/add", (req, res) => {
-    collegeData.addStudent(req.body).then(result => res.send(result)).catch(error => res.send({ message: error }))
+    collegeData.addStudent(req.body).then(result => sendResponse(res, "Success!", result)).catch(error => sendResponse(res, "Error!", error))
 });
 
 // Get Students
 app.get("/students", (req, res) => {
     course = req.query.course
 
+    setActiveMenu("students")
     if (course) {
         console.log("Getting student by course " + course)
-        collegeData.getStudentByCourse(course).then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+        collegeData.getStudentByCourse(course).then(result => sendResponse(res, "Students In Course " + course, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
     } else {
-        collegeData.getAllStudent().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+        collegeData.getAllStudent().then(result => sendResponse(res, "Students", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
     }
 });
 
@@ -136,28 +141,46 @@ app.get("/students", (req, res) => {
 app.get("/students/:num", (req, res) => {
     num = req.params.num
 
+    setActiveMenu("students")
     if (num) {
         console.log("Getting student by number " + num)
-        collegeData.getStudentByNum(num).then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+        collegeData.getStudentByNum(num).then(result => sendResponse(res, "Student No " + num, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
     } else {
-        collegeData.getAllStudent().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+        collegeData.getAllStudent().then(result => sendResponse(res, "Student No " + num, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
     }
 });
 
 // Get TAs
 app.get("/tas", (req, res) => {
-    collegeData.getTAs().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+    setActiveMenu("tas")
+    collegeData.getTAs().then(result => sendResponse(res, "Teaching Assistants", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
 });
 
 // Get Courses
 app.get("/courses", (req, res) => {
-    collegeData.getCourses().then(result => res.send(result)).catch(error => res.send({ message: "no results" }))
+    setActiveMenu("courses")
+    collegeData.getCourses().then(result => sendResponse(res, "Courses", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
 });
 
 // Catch Error
 app.use((err, req, res, next) => {
     res.status(404).send("Page Not THERE, Are you sure of the path?");
 });
+
+// Send Response
+function sendResponse(res, header, message, code) {
+    var data = {
+        header: header,
+        message: message,
+        code: code
+    }
+
+    res.render('response', {
+        active: active,
+        data: data,
+        layout: "layout"
+    });
+}
 
 // Setup HTTP Server to Listen on HTTP_PORT
 collegeData.initialize()
