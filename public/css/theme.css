@@ -125,11 +125,11 @@ table {
 	margin: 20px 0;
 	border: 0.3rem solid saddlebrown;
 	box-shadow: 0.6rem 0.6rem 0.6rem 0 gray;
-	transition: 0.2s transform;
+	transition: 0.2s box-shadow;
 }
 
 table:hover {
-	transform: scale(1.01);
+	box-shadow: 0.2rem 0.2rem 0.2rem 0 gray;
 }
 
 th {

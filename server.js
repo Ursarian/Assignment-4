@@ -131,9 +131,13 @@ app.get("/students", (req, res) => {
     setActiveMenu("students")
     if (course) {
         console.log("Getting student by course " + course)
-        collegeData.getStudentByCourse(course).then(result => sendResponse(res, "Students In Course " + course, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+        collegeData.getStudentByCourse(course).then(result => {
+            sendResponse(res, "Students In Course " + course, null, result)
+        }).catch(error => sendResponse(res, "Error!", "no results"))
     } else {
-        collegeData.getAllStudent().then(result => sendResponse(res, "Students", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+        collegeData.getAllStudent().then(result => {
+            sendResponse(res, "Students", null, result)
+        }).catch(error => sendResponse(res, "Error!", "no results"))
     }
 });
 
@@ -144,22 +148,30 @@ app.get("/students/:num", (req, res) => {
     setActiveMenu("students")
     if (num) {
         console.log("Getting student by number " + num)
-        collegeData.getStudentByNum(num).then(result => sendResponse(res, "Student No " + num, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+        collegeData.getStudentByNum(num).then(result => {
+            sendResponse(res, "Student No " + num, null, result)
+        }).catch(error => sendResponse(res, "Error!", "no results"))
     } else {
-        collegeData.getAllStudent().then(result => sendResponse(res, "Student No " + num, null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+        collegeData.getAllStudent().then(result => {
+            sendResponse(res, "Student No " + num, null, result)
+        }).catch(error => sendResponse(res, "Error!", "no results"))
     }
 });
 
 // Get TAs
 app.get("/tas", (req, res) => {
     setActiveMenu("tas")
-    collegeData.getTAs().then(result => sendResponse(res, "Teaching Assistants", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+    collegeData.getTAs().then(result => {
+        sendResponse(res, "Teaching Assistants", null, result)
+    }).catch(error => sendResponse(res, "Error!", "no results"))
 });
 
 // Get Courses
 app.get("/courses", (req, res) => {
     setActiveMenu("courses")
-    collegeData.getCourses().then(result => sendResponse(res, "Courses", null, JSON.stringify(result, null, 4))).catch(error => sendResponse(res, "Error!", "no results"))
+    collegeData.getCourses().then(result => {
+        sendResponse(res, "Courses", null, null, result)
+    }).catch(error => sendResponse(res, "Error!", "no results"))
 });
 
 // Catch Error
@@ -168,10 +180,14 @@ app.use((err, req, res, next) => {
 });
 
 // Send Response
-function sendResponse(res, header, message, code) {
+function sendResponse(res, header, message, students, courses, code) {
     var data = {
         header: header,
         message: message,
+        isStudentsVisible: students ? true : false,
+        students: students,
+        isCoursesVisible: courses ? true : false,
+        courses: courses,
         code: code
     }
 

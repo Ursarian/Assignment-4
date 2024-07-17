@@ -1,3 +1,57 @@
 <h3>{{data.header}}</h3>
 <p>{{data.message}}</p>
+{{#if data.isStudentsVisible}}
+    <table border='1'>
+        <tr>
+            <th>No</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Province</th>
+            <th>TA</th>
+            <th>Status</th>
+            <th>Course</th>
+        </tr>
+        {{#each data.students}}
+            <tr>
+                <td>{{studentNum}}</td>
+                <td>{{firstName}}</td>
+                <td>{{lastName}}</td>
+                <td>{{email}}</td>
+                <td>{{addressStreet}}</td>
+                <td>{{addressCity}}</td>
+                <td>{{addressProvince}}</td>
+                <td>{{TA}}</td>
+                <td>{{status}}</td>
+                <td>{{course}}</td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="10">No Data Available</td>
+            </tr>
+        {{/each}}
+    </table>
+{{/if}}
+{{#if data.isCoursesVisible}}
+    <table border='1'>
+        <tr>
+            <th>ID</th>
+            <th>Code</th>
+            <th>Description</th>
+        </tr>
+        {{#each data.courses}}
+            <tr>
+                <td>{{courseId}}</td>
+                <td>{{courseCode}}</td>
+                <td>{{courseDescription}}</td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="3">No Data Available</td>
+            </tr>
+        {{/each}}
+    </table>
+{{/if}}
 <pre>{{data.code}}</pre>
