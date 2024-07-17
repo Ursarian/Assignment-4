@@ -130,7 +130,6 @@ app.get("/students", (req, res) => {
 
     setActiveMenu("students")
     if (course) {
-        console.log("Getting student by course " + course)
         collegeData.getStudentByCourse(course).then(result => {
             sendResponse(res, "Students In Course " + course, null, result)
         }).catch(error => sendResponse(res, "Error!", "no results"))
@@ -147,7 +146,6 @@ app.get("/students/:num", (req, res) => {
 
     setActiveMenu("students")
     if (num) {
-        console.log("Getting student by number " + num)
         collegeData.getStudentByNum(num).then(result => {
             sendResponse(res, "Student No " + num, null, result)
         }).catch(error => sendResponse(res, "Error!", "no results"))
