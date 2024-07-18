@@ -57,7 +57,7 @@ body{
     border-right: 0.1rem solid rgb(96, 96, 96);
     border-left: 0.1rem solid rgb(96, 96, 96);
     color: darkolivegreen;
-    transition: height 0.15s ease-out, background-color 0.3s ease-out, color 0.3s ease-out;
+    transition: height 0.15s ease-out, box-shadow 0.15s ease-out, background-color 0.3s ease-out, color 0.3s ease-out;
 }
 
 .bg-light .navbar-collapse .navbar-nav .nav-link:hover{
