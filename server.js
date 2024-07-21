@@ -46,7 +46,6 @@ const upload = multer({ storage: storage });
 // WEEK 9: HANDLEBARS
 
 const exphbs = require("express-handlebars");
-const { measureMemory } = require("vm");
 
 // Register handlebars as the rendering engine for views
 app.engine(".hbs", exphbs.engine(
