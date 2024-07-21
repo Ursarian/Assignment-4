@@ -150,7 +150,7 @@ app.get("/students/:num", (req, res) => {
         }).catch(error => sendResponse(res, "Error!", "no results"))
     } else {
         collegeData.getAllStudent().then(result => {
-            sendResponse(res, "Student No " + num, null, result)
+            sendResponse(res, "Students", null, result)
         }).catch(error => sendResponse(res, "Error!", "no results"))
     }
 });
