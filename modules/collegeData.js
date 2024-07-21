@@ -122,15 +122,17 @@ function addStudent(student) {
         student.studentNum = dataCollection.students.length + 1
         dataCollection.students.push(student)
 
-        fs.writeFile("./data/students.json", JSON.stringify(dataCollection.students), function (error) {
-            if (error) {
-                console.log(error);
-                reject(error);
-                return;
-            }
+        resolve("Student has been added!")
 
-            resolve("Student has been added!")
-        })
+        // fs.writeFile("./data/students.json", JSON.stringify(dataCollection.students), function (error) {
+        //     if (error) {
+        //         console.log(error);
+        //         reject(error);
+        //         return;
+        //     }
+
+        //     resolve("Student has been added!")
+        // })
     });
 }
 
